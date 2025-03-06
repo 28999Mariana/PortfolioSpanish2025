@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Visualización de Datos | Mariana Velázquez</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e2f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      color: #00bcd4;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    header p {
+      font-size: 13px;
+      color: #b3b3b3;
+      margin: 10px 0 0;
+      font-weight: 300;
+    }
+
+    .project-details {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .project-details h2 {
+      font-size: 26px;
+      color: #00bcd4;
+      margin-top: 0;
+      font-weight: 500;
+    }
+
+    .project-details p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #b3b3b3;
+      margin-bottom: 20px;
+    }
+
+    .project-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .project-details ul li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #b3b3b3;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-block;
+      background-color: #00bcd4;
+      color: #fff;
+      letter-spacing: 1px;
+      width: 100%;
+      max-width: 360px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 18px;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin: 8px auto;
+      margin-left: 2%;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #0097a7;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación de Flujo de Datos */
+    .data-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      margin: 40px auto;
+      background-color: #2a2a3f;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .data-circle {
+      width: 100px;
+      height: 100px;
+      background-color: #00bcd4;
+      border-radius: 50%;
+      position: relative;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .data-circle::before,
+    .data-circle::after {
+      content: '';
+      position: absolute;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .data-circle::before {
+      width: 20px;
+      height: 20px;
+      top: 30px;
+      left: 20px;
+      animation: blink 2s infinite;
+    }
+
+    .data-circle::after {
+      width: 20px;
+      height: 20px;
+      top: 30px;
+      right: 20px;
+      animation: blink 2s infinite;
+    }
+
+    .data-message {
+      position: absolute;
+      bottom: 20px;
+      background-color: #ffffff;
+      color: #00bcd4;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      animation: message 4s infinite;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes message {
+      0%, 100% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Efecto de partículas */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #00bcd4;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #2a2a3f;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      color: #ffffff;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #ffffff;
+    }
+
+    .close:hover {
+      color: #00bcd4;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      header p {
+        font-size: 13px;
+      }
+
+      .project-details h2 {
+        font-size: 26px;
+      }
+
+      .project-details p {
+        font-size: 13px;
+      }
+
+      .data-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      header h1 {
+        font-size: 24px;
+        margin-top: 2%;
+      }
+
+      header p {
+        font-size: 13px;
+      }
+
+      .project-details h2 {
+        font-size: 22px;
+      }
+
+      .project-details p {
+        font-size: 13px;
+      }
+
+      .data-container {
+        height: 150px;
+        width: 280px;
+        margin-left: 10px;
+      }
+
+      .btn {
+        max-width: 360px;
+        font-size: 13px;
+        margin-left: -4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard de Visualización de Datos</h1>
+    <p>Creación de un panel interactivo para análisis de datos gubernamentales usando Power BI y Python.</p>
+  </header>
+
+  <!-- Animación de Flujo de Datos -->
+  <div class="data-container">
+    <div class="data-circle"></div>
+    <div class="data-message">¡Datos analizados!</div>
+  </div>
+
+  <section class="project-details">
+    <h2>Descripción del Proyecto</h2>
+    <p>Este proyecto involucra la creación de un dashboard interactivo para visualizar y analizar datos gubernamentales. El panel permite a los usuarios explorar datos demográficos, económicos y sociales de manera intuitiva, facilitando la toma de decisiones basada en datos.</p>
+    <h2>Herramientas Utilizadas</h2>
+    <ul>
+      <li>Power BI</li>
+      <li>Python (Pandas, Matplotlib)</li>
+      <li>SQL</li>
+      <li>Figma (Diseño UX/UI)</li>
+    </ul>
+    <h2>Resultados</h2>
+    <p>Que el dashboard sea adoptado por agencias gubernamentales y sea un instrumental en la formulación de políticas públicas basadas en datos.</p>
+    <button class="btn btn-modal" onclick="openModal()">Ver Informe Completo</button>
+    <a href="index.html" class="btn">Volver al Portfolio</a>
+  </section>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Informe de Presentación: Dashboard de Visualización de Datos</h2>
+      <p><strong>Resumen Ejecutivo:</strong> Este proyecto consiste en el desarrollo de un dashboard interactivo para visualizar y analizar datos gubernamentales. El panel permite a los usuarios explorar datos demográficos, económicos y sociales de manera intuitiva, facilitando la toma de decisiones basada en datos.</p>
+      <p><strong>Problema a Resolver:</strong> Las agencias gubernamentales necesitan herramientas eficientes para analizar grandes volúmenes de datos y tomar decisiones informadas. Este dashboard resuelve ese problema al proporcionar una plataforma interactiva y fácil de usar.</p>
+      <p><strong>Objetivos del Proyecto:</strong></p>
+      <ul>
+        <li>Facilitar la visualización de datos demográficos, económicos y sociales.</li>
+        <li>Mejorar la eficiencia en la toma de decisiones basada en datos.</li>
+        <li>Proporcionar una interfaz intuitiva y accesible para usuarios no técnicos.</li>
+      </ul>
+      <p><strong>Metodología:</strong></p>
+      <ul>
+        <li><strong>Recopilación de Datos:</strong> Se utilizan datos públicos de agencias gubernamentales.</li>
+        <li><strong>Procesamiento de Datos:</strong> Se emplea Python (Pandas) y SQL para limpiar y organizar los datos.</li>
+        <li><strong>Visualización:</strong> Se crean gráficos interactivos y paneles en Power BI.</li>
+        <li><strong>Diseño de Interfaz:</strong> Se diseña una interfaz amigable en Figma, centrada en la usabilidad.</li>
+      </ul>
+      <p><strong>Herramientas Utilizadas:</strong></p>
+      <ul>
+        <li>Power BI para la creación de paneles interactivos.</li>
+        <li>Python (Pandas, Matplotlib) para el procesamiento y análisis de datos.</li>
+        <li>SQL para la gestión de bases de datos.</li>
+        <li>Figma para el diseño UX/UI.</li>
+      </ul>
+      <p><strong>Resultados y Impacto:</strong></p>
+      <ul>
+        <li>Adopción del dashboard por agencias gubernamentales.</li>
+        <li>Mejora en la eficiencia de la toma de decisiones basada en datos.</li>
+        <li>Recepción positiva por parte de los usuarios debido a su facilidad de uso.</li>
+      </ul>
+      <p><strong>Desafíos y Soluciones:</strong></p>
+      <ul>
+        <li><strong>Integración de Datos:</strong> Se desarrollan scripts en Python para unificar datos de múltiples fuentes.</li>
+        <li><strong>Rendimiento del Dashboard:</strong> Se optimizan las consultas SQL y los gráficos en Power BI para mejorar el rendimiento.</li>
+        <li><strong>Diseño Intuitivo:</strong> Se realizan pruebas de usabilidad para garantizar una experiencia óptima.</li>
+      </ul>
+      <p><strong>Conclusiones:</strong> El dashboard de visualización de datos desarrollado en este proyecto ha demostrado ser una herramienta eficaz para mejorar la toma de decisiones en agencias gubernamentales. La combinación de tecnologías avanzadas y un diseño centrado en el usuario ha permitido una adopción exitosa.</p>
+      <p><strong>Próximos Pasos:</strong></p>
+      <ul>
+        <li>Incorporar más fuentes de datos para enriquecer el análisis.</li>
+        <li>Desarrollar una versión móvil del dashboard para mayor accesibilidad.</li>
+        <li>Integrar funcionalidades de machine learning para predicciones basadas en datos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Efecto de partículas -->
+  <div class="particles"></div>
+
+  <script>
+    // Generador de partículas
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // Funciones para abrir y cerrar el modal
+    function openModal() {
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Cerrar el modal si se hace clic fuera del contenido
+    window.onclick = function (event) {
+      const modal = document.getElementById('myModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>

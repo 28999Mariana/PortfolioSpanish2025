@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predicción de Fraude en Tiempo Real</title>
+  <link rel="stylesheet" href="./style.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e2f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      color: #00bcd4;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    header p {
+      font-size: 13px;
+      color: #b3b3b3;
+      margin: 10px 0 0;
+      font-weight: 300;
+    }
+
+    .project-details {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .project-details h2 {
+      font-size: 26px;
+      color: #00bcd4;
+      margin-top: 0;
+      font-weight: 500;
+    }
+
+    .project-details p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #b3b3b3;
+      margin-bottom: 20px;
+    }
+
+    .project-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .project-details ul li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #b3b3b3;
+    }
+
+    
+    .btn:hover {
+      background-color: #0097a7;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación Hyperspeed */
+    .hyperspeed-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      margin: 40px auto;
+      background-color: #2a2a3f;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hyperspeed-line {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 188, 212, 0), #00bcd4, rgba(0, 188, 212, 0));
+      animation: hyperspeed 1.5s infinite linear;
+    }
+
+    .hyperspeed-line:nth-child(1) {
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .hyperspeed-line:nth-child(2) {
+      left: 40%;
+      animation-delay: 0.2s;
+    }
+
+    .hyperspeed-line:nth-child(3) {
+      left: 60%;
+      animation-delay: 0.4s;
+    }
+
+    .hyperspeed-line:nth-child(4) {
+      left: 80%;
+      animation-delay: 0.6s;
+    }
+
+    .fraud-alert {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff3b3b;
+      border-radius: 50%;
+      animation: pulse 1s infinite alternate;
+      box-shadow: 0 0 10px rgba(255, 59, 59, 0.8);
+    }
+
+    .metrics {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      text-align: left;
+    }
+
+    .metrics h3 {
+      font-size: 1.2rem;
+      color: #00bcd4;
+      margin: 0;
+    }
+
+    .metrics p {
+      font-size: 13px;
+      color: #b3b3b3;
+      margin: 5px 0;
+    }
+
+    @keyframes hyperspeed {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.2);
+      }
+    }
+
+    /* Efecto de partículas */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #00bcd4;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #2a2a3f;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      color: #ffffff;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #ffffff;
+    }
+
+    .close:hover {
+      color: #00bcd4;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+
+      h1{
+        font-size: 32px;
+      }
+
+      header p {
+        font-size: 13px;
+        margin-top: 10%;
+      }
+
+      .project-details h2 {
+        font-size: 26px;
+        margin-top: -3%;
+      }
+
+      .project-details p {
+        font-size: 13px;
+        
+      }
+
+
+      .hyperspeed-container {
+        width: 260px;
+        height: 210px;
+        text-align: center;
+        margin-top: -8%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Predicción de Fraude en Tiempo Real</h1>
+    <p>Desarrollo de un sistema de detección de transacciones fraudulentas utilizando Machine Learning.</p>
+  </header>
+
+  <!-- Animación Hyperspeed -->
+  <div class="hyperspeed-container">
+    <div class="hyperspeed-line"></div>
+    <div class="hyperspeed-line"></div>
+    <div class="hyperspeed-line"></div>
+    <div class="hyperspeed-line"></div>
+    <div class="fraud-alert" style="top: 50%; left: 50%;"></div>
+    <div class="metrics">
+      <h2>Métricas en Tiempo Real</h2>
+      <p>Precisión: ### %</p>
+      <p>Transacciones Analizadas: ### </p>
+      <p>Fraudes Detectados: ### </p>
+    </div>
+  </div>
+
+  <section class="project-details project-fraud">
+    <h2>Descripción del Proyecto</h2>
+    <p>Este proyecto consistió en la creación de un modelo de Machine Learning capaz de detectar transacciones fraudulentas en tiempo real. Utilizando datos históricos de transacciones bancarias, el modelo analiza patrones sospechosos y alerta a los usuarios en cuestión de segundos.</p>
+    <h2>Tecnologías Utilizadas</h2>
+    <ul>
+      <li>Python (Pandas, Scikit-learn, TensorFlow)</li>
+      <li>Machine Learning (Random Forest, XGBoost)</li>
+      <li>Streamlit (Dashboard interactivo)</li>
+      <li>SQL (Base de datos)</li>
+    </ul>
+    
+    <button class="btn btn-modal" onclick="openModal()">Ver Informe Completo</button>
+    <a href="index.html" class="btn">Volver al Portfolio</a>
+  </section>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Informe de Presentación: Sistema de Predicción de Fraude en Tiempo Real</h2>
+      <p><strong>Resumen Ejecutivo:</strong> Este proyecto consistió en el desarrollo de un sistema avanzado de detección de transacciones fraudulentas en tiempo real, utilizando técnicas de Machine Learning. El objetivo principal fue identificar patrones sospechosos en transacciones bancarias y alerta a los usuarios en cuestión de segundos, minimizando así las pérdidas financieras y mejorando la seguridad de las operaciones.</p>
+      <p><strong>Problema a Resolver:</strong> El fraude financiero es una de las mayores preocupaciones para instituciones bancarias y empresas de comercio electrónico. Las transacciones fraudulentas no solo generan pérdidas económicas, sino que también dañan la reputación de las empresas. La detección manual de fraudes es ineficiente y propensa a errores, por lo que se necesitaba una solución automatizada y precisa.</p>
+      <p><strong>Objetivos del Proyecto:</strong></p>
+      <ul>
+        <li>Desarrollar un modelo de Machine Learning capaz de detectar transacciones fraudulentas en tiempo real.</li>
+        <li>Reducir las pérdidas financieras causadas por fraudes.</li>
+        <li>Proporcionar una herramienta intuitiva y accesible para los usuarios finales mediante un dashboard interactivo.</li>
+      </ul>
+      <p><strong>Metodología:</strong></p>
+      <ul>
+        <li>Recopilación y Preprocesamiento de Datos.</li>
+        <li>Análisis Exploratorio de Datos (EDA).</li>
+        <li>Selección y Entrenamiento del Modelo.</li>
+        <li>Implementación en Tiempo Real.</li>
+        <li>Evaluación del Modelo.</li>
+      </ul>
+      <p><strong>Tecnologías Utilizadas:</strong></p>
+      <ul>
+        <li>Python (Pandas, Scikit-learn, TensorFlow, XGBoost).</li>
+        <li>SQL para la gestión de bases de datos.</li>
+        <li>Streamlit para el desarrollo del dashboard interactivo.</li>
+        <li>Matplotlib y Seaborn para visualizaciones durante el EDA.</li>
+      </ul>
+      <p><strong>Resultados y Impacto:</strong></p>
+      <ul>
+        <li>Precisión del Modelo: ...%.</li>
+        <li>Reducción de Pérdidas: ...%.</li>
+        <li>Dashboard Interactivo: Desarrollado con Streamlit.</li>
+        <li>Escalabilidad: Diseñado para manejar grandes volúmenes de transacciones.</li>
+      </ul>
+      <p><strong>Desafíos y Soluciones:</strong></p>
+      <ul>
+        <li>Datos Desbalanceados: Se utilizó SMOTE y ajuste de pesos.</li>
+        <li>Latencia en Tiempo Real: Optimización del código y uso de servidores en la nube.</li>
+        <li>Interpretabilidad del Modelo: Uso de SHAP para explicar predicciones.</li>
+      </ul>
+      <p><strong>Conclusiones:</strong> El sistema de detección de fraude en tiempo real desarrollado en este proyecto ha demostrado ser una herramienta eficaz para identificar transacciones fraudulentas con alta precisión. La combinación de técnicas avanzadas de Machine Learning, un dashboard interactivo y una infraestructura escalable permite a la empresa cliente reducir significativamente sus pérdidas financieras y mejorar la seguridad de sus operaciones.</p>
+      <p><strong>Próximos Pasos:</strong></p>
+      <ul>
+        <li>Mejora Continua del Modelo.</li>
+        <li>Expansión a Otras Áreas.</li>
+        <li>Automatización de Alertas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Efecto de partículas -->
+  <div class="particles"></div>
+
+  <script>
+    // Generador de partículas
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // Funciones para abrir y cerrar el modal
+    function openModal() {
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Cerrar el modal si se hace clic fuera del contenido
+    window.onclick = function (event) {
+      const modal = document.getElementById('myModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>

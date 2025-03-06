@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicación Móvil para Hábitos Saludables | Mariana Velázquez</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e2f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      color: #00bcd4;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    header p {
+      font-size: 13px;
+      color: #b3b3b3;
+      margin: 10px 0 0;
+      font-weight: 300;
+    }
+
+    .project-details {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .project-details h2 {
+      font-size: 26px;
+      color: #00bcd4;
+      margin-top: 0;
+      font-weight: 500;
+    }
+
+    .project-details p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #b3b3b3;
+      margin-bottom: 20px;
+    }
+
+    .project-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .project-details ul li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #b3b3b3;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-block;
+      background-color: #00bcd4;
+      color: #fff;
+      letter-spacing: 1px;
+      width: 100%;
+      max-width: 360px;
+      height: 36px;
+      line-height: 36px; 
+      text-align: center;
+      border-radius: 18px;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: none; 
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin: 8px auto;
+      margin-left: 2%;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #0097a7;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación de Hábitos Saludables */
+    .habit-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      margin: 40px auto;
+      background-color: #2a2a3f;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .habit-circle {
+      width: 100px;
+      height: 100px;
+      background-color: #00bcd4;
+      border-radius: 50%;
+      position: relative;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
+    }
+
+    .habit-circle::before,
+    .habit-circle::after {
+      content: '';
+      position: absolute;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+
+    .habit-circle::before {
+      width: 20px;
+      height: 20px;
+      top: 30px;
+      left: 20px;
+      animation: blink 2s infinite;
+    }
+
+    .habit-circle::after {
+      width: 20px;
+      height: 20px;
+      top: 30px;
+      right: 20px;
+      animation: blink 2s infinite;
+    }
+
+    .habit-message {
+      position: absolute;
+      bottom: 20px; /* Ajuste de posición */
+      background-color: #ffffff;
+      color: #00bcd4;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      animation: message 4s infinite;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes message {
+      0%, 100% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Efecto de partículas */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #00bcd4;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #2a2a3f;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      color: #ffffff;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #ffffff;
+    }
+
+    .close:hover {
+      color: #00bcd4;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 32px;
+      }
+
+      header p {
+        font-size: 13px;
+      }
+
+      .project-details h2 {
+        font-size: 26px;
+      }
+
+      .project-details p {
+        font-size: 13px;
+      }
+
+      .habit-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      header p {
+        font-size: 13px;
+      }
+
+      .project-details h2 {
+        font-size: 22px;
+      }
+
+      .project-details p {
+        font-size: 13px;
+      }
+
+      .habit-container {
+        height: 150px;
+        width: 280px;
+      }
+
+      .btn {
+        max-width: 360px;
+        font-size: 13px;
+        margin-left: -4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aplicación Móvil para Gestión de Hábitos Saludables</h1>
+    <p>Diseño de una app móvil para ayudar a los usuarios a mantener hábitos saludables.</p>
+  </header>
+
+  <!-- Animación de Hábitos Saludables -->
+  <div class="habit-container">
+    <div class="habit-circle"></div>
+    <div class="habit-message">¡Hábito completado!</div>
+  </div>
+
+  <section class="project-details">
+    <h2>Descripción del Proyecto</h2>
+    <p>Este proyecto consistió en el diseño de una aplicación móvil que permite a los usuarios establecer y seguir metas relacionadas con hábitos saludables, como ejercicio, alimentación y sueño. La app incluye recordatorios, seguimiento de progreso y recomendaciones personalizadas.</p>
+    <h2>Herramientas Utilizadas</h2>
+    <ul>
+      <li>Figma (Diseño UX/UI)</li>
+      <li>Adobe XD (Prototipado)</li>
+      <li>User Testing (Pruebas de usabilidad)</li>
+      <li>React Native (Implementación del diseño)</li>
+    </ul>
+    <h2>Resultados</h2>
+    <p>La app fue descargada más de 50,000 veces en los primeros 3 meses y recibió una calificación de 4.8/5 en las tiendas de aplicaciones.</p>
+    <button class="btn btn-modal" onclick="openModal()">Ver Informe Completo</button>
+    <a href="index.html" class="btn">Volver al Portfolio</a>
+  </section>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Informe de Presentación: Aplicación Móvil para Gestión de Hábitos Saludables</h2>
+      <p><strong>Resumen Ejecutivo:</strong> Este proyecto consistió en el diseño y desarrollo de una aplicación móvil para ayudar a los usuarios a establecer y mantener hábitos saludables. La app incluye funcionalidades como recordatorios, seguimiento de progreso y recomendaciones personalizadas.</p>
+      <p><strong>Problema a Resolver:</strong> Muchas personas luchan por mantener hábitos saludables debido a la falta de motivación, organización y seguimiento. Esta app busca resolver ese problema ofreciendo una herramienta integral y fácil de usar.</p>
+      <p><strong>Objetivos del Proyecto:</strong></p>
+      <ul>
+        <li>Facilitar el establecimiento de metas relacionadas con hábitos saludables.</li>
+        <li>Proporcionar recordatorios y seguimiento de progreso.</li>
+        <li>Ofrecer recomendaciones personalizadas basadas en el comportamiento del usuario.</li>
+      </ul>
+      <p><strong>Metodología:</strong></p>
+      <ul>
+        <li><strong>Investigación de Usuario:</strong> Se realizaron entrevistas y encuestas para entender las necesidades de los usuarios.</li>
+        <li><strong>Diseño UX/UI:</strong> Se utilizaron Figma y Adobe XD para crear prototipos y diseñar la interfaz.</li>
+        <li><strong>Pruebas de Usabilidad:</strong> Se llevaron a cabo pruebas con usuarios reales para validar el diseño.</li>
+        <li><strong>Desarrollo:</strong> Se implementó la app utilizando React Native para garantizar compatibilidad multiplataforma.</li>
+      </ul>
+      <p><strong>Herramientas Utilizadas:</strong></p>
+      <ul>
+        <li>Figma (Diseño UX/UI).</li>
+        <li>Adobe XD (Prototipado).</li>
+        <li>User Testing (Pruebas de usabilidad).</li>
+        <li>React Native (Implementación del diseño).</li>
+      </ul>
+      <p><strong>Resultados y Impacto:</strong></p>
+      <ul>
+        <li>Más de 50,000 descargas en los primeros 3 meses.</li>
+        <li>Calificación de 4.8/5 en las tiendas de aplicaciones.</li>
+        <li>Mejora significativa en la adherencia a hábitos saludables entre los usuarios.</li>
+      </ul>
+      <p><strong>Desafíos y Soluciones:</strong></p>
+      <ul>
+        <li><strong>Diseño Intuitivo:</strong> Se realizaron múltiples iteraciones de diseño basadas en feedback de usuarios.</li>
+        <li><strong>Compatibilidad Multiplataforma:</strong> Se eligió React Native para garantizar un rendimiento óptimo en iOS y Android.</li>
+        <li><strong>Personalización:</strong> Se implementaron algoritmos para ofrecer recomendaciones personalizadas.</li>
+      </ul>
+      <p><strong>Conclusiones:</strong> La aplicación móvil desarrollada en este proyecto ha demostrado ser una herramienta efectiva para ayudar a los usuarios a mantener hábitos saludables. La combinación de un diseño intuitivo y funcionalidades personalizadas ha resultado en una alta satisfacción del usuario y una adopción masiva.</p>
+      <p><strong>Próximos Pasos:</strong></p>
+      <ul>
+        <li>Incorporar integración con wearables para un seguimiento más preciso.</li>
+        <li>Agregar funcionalidades de comunidad para fomentar la motivación grupal.</li>
+        <li>Expandir la app a nuevos mercados con soporte multilingüe.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Efecto de partículas -->
+  <div class="particles"></div>
+
+  <script>
+    // Generador de partículas
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // Funciones para abrir y cerrar el modal
+    function openModal() {
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Cerrar el modal si se hace clic fuera del contenido
+    window.onclick = function (event) {
+      const modal = document.getElementById('myModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e2f;
+  color: #fff;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 20px 0;
+}
+
+p {
+  font-size: 13px;
+  margin: 0 0 15px 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Botones según Material Design */
+.btn {
+  display: inline-block;
+  background-color: #00bcd4;
+  color: #fff;
+  letter-spacing: 1px;
+  width: 100%; 
+  max-width: 280px; 
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 8px auto; 
+}
+
+.btn:hover {
+  background-color: #0097a7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  background-color: #2a2a3f;
+  position: fixed;
+  width: 80%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  font-size: 13px;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #00bcd4;
+}
+
+.about {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+
+.about p {
+  font-size: 16px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 13px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content .btn {
+  margin: 10px 0;
+  text-transform: none;
+  margin-left: 16px;
+}
+
+/* Projects Section */
+.projects {
+  margin-left: 10%;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 10%;
+}
+
+.project-card {
+  background-color: #2a2a3f;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.project-card .btn {
+  width: 100%; 
+  max-width: 280px; 
+  margin: 8px auto; 
+  text-transform: none;
+}
+
+#project-details{
+  margin: 2%;
+  margin-left: 11%;
+}
+
+.projects-recon .btn {
+  text-transform: none;
+  font-size: 13px;
+  width: 360px;
+}
+.projects-recon li {
+  font-size: 13px;
+}
+
+.project-fraud .btn {
+   font-size: 13px;
+   text-transform: none;
+}
+.modal-content li{
+  font-size: 13px;
+}
+
+
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 60px;
+  padding: 10px 10%;
+}
+
+.skill {
+  font-size: 13px;
+  height: 50px;
+  width: 150px;
+  align-content: center;
+  background-color: #00bcd4;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+.skills h2 {
+  margin-left: 10%;
+}
+
+.skill:hover {
+  transform: scale(1.05);
+}
+
+/* Contact Section */
+.contact h2 {
+  margin-top: 5%;
+  margin-left: 10%
+}
+
+.contact p {
+  margin-left: 10%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 10%;
+  margin: 16px;
+}
+
+form label {
+  height: 36px;
+}
+
+form input,
+form textarea {
+  width: 100%; 
+  max-width: 600px; 
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 13px;
+  margin: 0 auto; /* Centrar */
+}
+
+form button.btn {
+  width: 107%; 
+  max-width: 630px; 
+  margin: 8px auto; 
+  text-transform: none;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #2a2a3f;
+}
+
+.social-links {
+  margin-top: 10px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #00bcd4;
+}
+
+/* Media Query para 320px */
+@media (max-width: 320px) {
+  nav .logo h1 {
+    text-align: center;
+    margin-right: 32px;
+  }
+
+  nav {
+    padding: 16px 5%;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-right: 10%;
+  }
+  
+  .nav-recon {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-right: 10%;
+  }
+
+  .about {
+    margin-top: 5px;
+    padding-top: 20px;
+    padding: 16px;
+  }
+
+  .about p {
+    font-size: 13px;
+  }
+
+  .hero-content {
+    height: 380px;
+    margin-top: 325px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+    margin-top: 1px;
+  }
+
+  .hero-content .btn {
+    margin-left: -1%;
+  }
+
+  .hero-content h2 {
+    font-size: 13px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    padding: 25px;
+    width: 100%;
+    margin-left: -41px;
+  }
+
+  .project-card .btn {
+    width: 115%;
+    margin-left: -16px;
+  }
+
+  .projects h2 {
+    text-align: center;
+    padding-top: 16px;
+    margin-left: -12%;
+    margin-top: -18px;
+  }
+
+  .skills h2 {
+    text-align: center;
+    margin-top: 8px;
+    padding-bottom: 10px;
+  }
+
+  .skill {
+    font-size: 13px;
+    width: 100%;
+    margin-left: -11px;
+    margin-top: -20px;
+  }
+
+  .skills-grid {
+    gap: 34px;
+  }
+
+  .contact {
+    padding: 8px;
+    width: 98%;
+    margin-left: -13px;
+  }
+
+  .contact form .btn {
+    width: 107%;
+  }
+
+  .contact h2 {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .contact p {
+    text-align: center;
+    padding: 8px;
+  }
+
+  form {
+    padding: 8px;
+  }
+
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .projects-recon{
+    padding-top: 3%;
+    
+  }
+  .projects-recon li{
+    font-size: 13px;
+    margin-left: -35px;
+  }
+
+  .projects-recon .btn {
+    width: 107%;
+    font-size: 13px;
+    text-transform: none;
+    font-size: 13px;
+    margin-left: -9%;
+    margin-bottom: 15px;
+  }
+  .hero-content  {
+    margin-top: 290px;
+  }
+  .container-recon {
+    height: 400px;
+  }
+
+  .container-recon {
+    margin-top: 10px; /* Ajusta el margen superior */
+  }
+
+  .scan-container {
+    width: 250px; /* Reduce el tamaño del contenedor de escaneo */
+    height: 250px;
+    margin: 8px auto; /* Ajusta los márgenes laterales y superiores/inferiores */
+  }
+
+
+  .face {
+    background-size: cover; 
+  }
+
+  h1 {
+    font-size: 28px; 
+  }
+
+  .btn {
+    max-width: 300px; 
+    font-size: 13px;
+    text-transform: none; 
+  }
+
+  
+}
+
+.container-recon {
+  margin-top: 9%; 
+}
+.container-recon .btn {
+  text-transform: none;
+  
+}

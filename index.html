@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio | Mariana Velázquez</title>
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -26,10 +27,8 @@
       width: 100%;
       background-color: #2a2a3f;
       padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
     }
 
     .logo h1 {
@@ -51,7 +50,7 @@
     .nav-links li a {
       color: #ffffff;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       transition: color 0.3s;
     }
 
@@ -62,13 +61,13 @@
     /* Hero Section */
     .hero {
       width: 100%;
-      max-width: 1200px;
+      max-width: 280px;
       padding: 40px 16px;
       text-align: center;
     }
 
     .hero-content h1 {
-      font-size: 26px;
+      font-size: 24px;
       color: #00bcd4;
       margin: 0;
     }
@@ -86,7 +85,7 @@
     /* About Section */
     .about {
       width: 100%;
-      max-width: 1200px;
+      max-width: 280px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -107,20 +106,20 @@
     /* Projects Section */
     .projects {
       width: 100%;
-      max-width: 1200px;
+      max-width: 280px;
       padding: 40px 16px;
       text-align: center;
     }
 
     .projects h2 {
-      font-size: 26px;
+      font-size: 22px;
       color: #00bcd4;
       margin: 0 0 16px;
     }
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr;
       gap: 16px;
       margin: 0 auto;
     }
@@ -153,7 +152,7 @@
     /* Skills Section */
     .skills {
       width: 100%;
-      max-width: 1200px;
+      max-width: 280px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -166,7 +165,7 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: 1fr;
       gap: 16px;
       margin: 0 auto;
     }
@@ -183,8 +182,8 @@
 
     /* Contact Section */
     .contact {
-      width: 97%;
-      max-width: 1100px;
+      width: 100%;
+      max-width: 280px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -205,13 +204,14 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      max-width: 500px;
+      max-width: 280px;
       margin: 0 auto;
     }
 
     .contact input,
-    .contact textarea {
-      width: 97%;
+    .contact textarea,
+    .contact button {
+      width: 100%;
       padding: 8px;
       border-radius: 8px;
       border: 1px solid #2a2a3f;
@@ -226,14 +226,10 @@
     }
 
     .contact button {
-      width: 100%;
-      padding: 2px;
-      border-radius: 12px;
       background-color: #00bcd4;
       color: #ffffff;
       border: none;
       cursor: pointer;
-      font-size: 13px;
       transition: background-color 0.3s;
     }
 
@@ -280,19 +276,19 @@
       color: #fff;
       letter-spacing: 1px;
       width: 100%;
-      max-width: 360px;
+      max-width: 280px;
       height: 36px;
       line-height: 36px;
       text-align: center;
       border-radius: 18px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       text-transform: none;
       border: none;
       cursor: pointer;
       transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      margin: 8px auto;
+      margin: 6px auto;
       text-decoration: none;
     }
 
@@ -307,44 +303,70 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* Responsive Design */
+    /* Media Queries para tablets y notebooks */
     @media (min-width: 768px) {
+      .hero,
+      .about,
+      .projects,
+      .skills,
+      .contact {
+        max-width: 600px;
+      }
+
       .nav-links {
         flex-direction: row;
+        justify-content: center;
         gap: 24px;
       }
 
-      .hero-content h1 {
-        font-size: 48px;
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero-content h2 {
-        font-size: 20px;
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      .about p {
-        font-size: 16px;
-      }
-
-      .project-card h3 {
-        font-size: 20px;
-      }
-
-      .project-card p {
-        font-size: 16px;
-      }
-
-      .skill {
-        font-size: 16px;
+      .contact form {
+        max-width: 600px;
       }
 
       .contact input,
-      .contact textarea {
-        font-size: 16px;
+      .contact textarea,
+      .contact button {
+        max-width: 600px;
+      }
+      .contact .btn {
+        padding: 1px;
+      }
+    }
+
+    /* Media Queries para escritorios */
+    @media (min-width: 1024px) {
+      .hero,
+      .about,
+      .projects,
+      .skills,
+      .contact {
+        max-width: 800px;
       }
 
+      .project-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .contact form {
+        max-width: 800px;
+      }
+
+      .contact input,
+      .contact textarea,
       .contact button {
-        font-size: 16px;
+        max-width: 800px;
       }
     }
   </style>
@@ -386,6 +408,110 @@
     <h2>Proyectos Destacados</h2>
     <div class="project-grid">
       <!-- Proyectos aquí -->
+       <!-- Proyecto 1: Predicción de Fraude en Tiempo Real -->
+      <div class="project-card">
+        <h3>Predicción de Fraude en Tiempo Real</h3>
+        <p>Desarrollo de un sistema de detección de transacciones fraudulentas utilizando Machine Learning.</p>
+        <a href="fraud_prediction.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 2: Optimización de Rutas Logísticas -->
+      <div class="project-card">
+        <h3>Optimización de Rutas Logísticas</h3>
+        <p>Análisis predictivo para optimizar rutas de entrega y reducir costos operativos.</p>
+        <a href="optimizacion_rutas.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 3: Chatbot Inteligente para Servicio al Cliente -->
+      <div class="project-card">
+        <h3>Chatbot Inteligente</h3>
+        <p>Desarrollo de un chatbot basado en IA para automatizar respuestas y mejorar la experiencia del cliente.</p>
+        <a href="chatbot_inteligente.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 4: Sistema de Reconocimiento Facial -->
+      <div class="project-card">
+        <h3>Reconocimiento Facial</h3>
+        <p>Sistema de reconocimiento facial para control de acceso en entornos corporativos.</p>
+        <a href="reconocimiento_facial.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 5: Rediseño de Plataforma de E-Learning -->
+      <div class="project-card">
+        <h3>Rediseño de Plataforma de E-Learning</h3>
+        <p>Diseño centrado en el usuario para mejorar la experiencia de aprendizaje en línea.</p>
+        <a href="rediseno_elearning.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 6: Aplicación Móvil para Hábitos Saludables -->
+      <div class="project-card">
+        <h3>App para Hábitos Saludables</h3>
+        <p>Diseño de una app móvil para ayudar a los usuarios a mantener hábitos saludables.</p>
+        <a href="app_habitos.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 7: Plataforma Educativa con IA -->
+      <div class="project-card">
+        <h3>Plataforma Educativa con IA</h3>
+        <p>Desarrollo de un sistema de recomendación basado en IA para mejorar el rendimiento estudiantil.</p>
+        <a href="plataforma_educativa_ia.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 8: Dashboard de Visualización de Datos -->
+      <div class="project-card">
+        <h3>Dashboard de Visualización de Datos</h3>
+        <p>Creación de un panel interactivo para análisis de datos gubernamentales usando Power BI y Python.</p>
+        <a href="dashboard_visualizacion_datos.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 9: E-Commerce con React -->
+      <div class="project-card">
+        <h3>E-Commerce con React</h3>
+        <p>Diseño y desarrollo de una plataforma de comercio electrónico con React y Figma.</p>
+        <a href="ecommerce_react.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 10: Predicción de Churn -->
+      <div class="project-card">
+        <h3>Predicción de Churn</h3>
+        <p>Sistema de predicción de rotación de clientes usando Machine Learning.</p>
+        <a href="prediccion_churn.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 11: Análisis de Sentimientos -->
+      <div class="project-card">
+        <h3>Análisis de Sentimientos</h3>
+        <p>Análisis de opiniones en redes sociales con NLP.</p>
+        <a href="analisis_sentimientos.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 12: Recomendación Personalizada -->
+      <div class="project-card">
+        <h3>Recomendación Personalizada</h3>
+        <p>Sistema de recomendación para e-commerce.</p>
+        <a href="recomendacion_personalizada.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 13: Predicción de Temperatura en Argentina -->
+      <div class="project-card">
+        <h3>Predicción del Aumento de Temperatura en Argentina</h3>
+        <p>Análisis y proyecciones de temperatura utilizando ARIMA, Prophet y Redes Neuronales (LSTM).</p>
+        <a href="Aumento_Temp_Arg.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 14: Mood: Gestión de Estrés Laboral-->
+      <div class="project-card">
+        <h3>Mood: Gestión de Estrés Laboral</h3>
+        <p>Una aplicación para prevenir el burnout y mejorar el bienestar en el trabajo.</p>
+        <a href="estres_laboral.html" class="btn">Ver Detalles</a>
+      </div>
+
+      <!-- Proyecto 15: Predicción de Elecciones Legislativas 2025-->
+      <div class="project-card">
+        <h3>Predicción de Elecciones Legislativas 2025</h3>
+        <p>Análisis predictivo de las elecciones legislativas en Argentina utilizando técnicas avanzadas de Machine Learning.</p>
+        <a href="prediccion_elec_legislativas.html" class="btn">Ver Detalles</a>
+      </div>
     </div>
   </section>
 

@@ -219,6 +219,7 @@
     .contact textarea,
     .contact button {
       width: 100%;
+      max-width: 320px;
       padding: 8px;
       border-radius: 8px;
       border: 1px solid #2a2a3f;
@@ -311,8 +312,21 @@
     }
 
     @media (min-width: 320px) {
+      
       .contact .btn {
         padding: 1px;
+      }
+      .contact {
+        width: 100%;
+        max-width: 320px;
+      }
+      .contact form {
+        max-width: 320px;
+      }
+      .contact input,
+      .contact textarea {
+        width: 100%;
+        max-width: 285px;
       }
     }
 

@@ -29,12 +29,14 @@
       padding: 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       text-align: center;
+      letter-spacing: 1px;
     }
 
     .logo h1 {
       font-size: 24px;
       color: #00bcd4;
       margin: 0;
+      letter-spacing: 1px;
     }
 
     .nav-links {
@@ -52,6 +54,7 @@
       text-decoration: none;
       font-size: 13px;
       transition: color 0.3s;
+      letter-spacing: 1px;
     }
 
     .nav-links li a:hover {
@@ -61,7 +64,7 @@
     /* Hero Section */
     .hero {
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -70,12 +73,14 @@
       font-size: 24px;
       color: #00bcd4;
       margin: 0;
+      letter-spacing: 1px;
     }
 
     .hero-content h2 {
       font-size: 13px;
       color: #b3b3b3;
       margin: 16px 0;
+      letter-spacing: 1px;
     }
 
     .hero-content .btn {
@@ -85,7 +90,7 @@
     /* About Section */
     .about {
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -94,6 +99,7 @@
       font-size: 22px;
       color: #00bcd4;
       margin: 0 0 16px;
+      letter-spacing: 1px;
     }
 
     .about p {
@@ -101,12 +107,13 @@
       color: #b3b3b3;
       line-height: 1.6;
       margin: 0;
+      letter-spacing: 1px;
     }
 
     /* Projects Section */
     .projects {
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -152,7 +159,7 @@
     /* Skills Section */
     .skills {
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -183,7 +190,7 @@
     /* Contact Section */
     .contact {
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       padding: 40px 16px;
       text-align: center;
     }
@@ -204,7 +211,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      max-width: 280px;
+      max-width: 320px;
       margin: 0 auto;
     }
 
@@ -276,7 +283,7 @@
       color: #fff;
       letter-spacing: 1px;
       width: 100%;
-      max-width: 280px;
+      max-width: 320px;
       height: 36px;
       line-height: 36px;
       text-align: center;
@@ -301,6 +308,12 @@
     .btn:active {
       transform: translateY(0);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (min-width: 320px) {
+      .contact .btn {
+        padding: 1px;
+      }
     }
 
     /* Media Queries para tablets y notebooks */

@@ -238,11 +238,11 @@
 
     .modal-content {
       background-color: #2a2a3f;
-      margin: 8px auto; /* Centrado con márgenes iguales a los lados */
+      margin: 8px auto;
       padding: 20px;
       border-radius: 12px;
-      width: 90%; /* Ancho del 90% del contenedor padre */
-      max-width: 400px; /* Ancho máximo más angosto */
+      width: 90%;
+      max-width: 600px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       position: relative;
       color: #ffffff;
@@ -263,31 +263,12 @@
       color: #00bcd4;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 24px;
-      }
-
-      header p {
-        font-size: 13px;
-        margin-top: 10%;
-      }
-
-      .project-details h2 {
-        font-size: 22px;
-        margin-top: -3%;
-      }
-
-      .project-details p {
-        font-size: 13px;
-      }
-
-      .hyperspeed-container {
-        width: 260px;
-        height: 210px;
-        text-align: center;
-        margin-top: -8%;
+    
+    @media (max-width: 320px) {
+      .modal-content {
+        width: calc(100% - 16px); 
+        max-width: none;  
+        margin: 8px; 
       }
     }
   </style>
